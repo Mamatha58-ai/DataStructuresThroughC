@@ -4,6 +4,7 @@ struct node{
 	int data;
 	struct node *link;
 };
+typedef struct node NODE;
 struct node *create(){
 	struct node *temp = (struct node*) malloc(sizeof(struct node));
 	printf("enter element to insert");
@@ -35,7 +36,8 @@ void print(struct node * head){
    	 	ptr = ptr->link;
 		}
 		ptr->link = temp;
-	   return head;
+		
+		return head;
    }
    struct node * insertatanywhere(struct node *head){
    	int p,loc=0;
@@ -89,6 +91,7 @@ void print(struct node * head){
    	scanf("%d",&p);
    	while(ptr->link!=NULL){
    		loc++;
+   		printf("%d ",loc);
    		if(loc==p){
    			break;
 		   }
@@ -100,6 +103,18 @@ void print(struct node * head){
 	   free(temp);
 	   return head;
    }
+   NODE * reverse(NODE *head){
+	NODE * next = NULL;
+	NODE * pre = NULL;
+	while(head != NULL){
+		next = head->link;
+		head->link = pre;
+		pre = head;
+		head = next;
+	}
+	head =pre;
+	return head;
+}
 int main(){
 	struct node *head = NULL;
 	head = (struct node *)malloc(sizeof(struct node));
@@ -116,11 +131,12 @@ int main(){
 	head->link->link= create;
 	print(head);
    int ch;
-	do{
-       printf("1.insert at begin\n 2.insert at end\n 3. insert at any where\n 4.delete at begin \n 5.delete at end \n 6. delete at any where\n");
-       printf("select your choice :\n");
-        scanf("%d",&ch);
-      switch(ch){
+	
+		  do{
+printf("1.insert at begin\n 2.insert at end\n 3. insert at any where\n 4.delete at begin \n 5.delete at end \n 6. delete at any where\n 7 . reverse\n");
+   printf("select your choice :\n");
+   scanf("%d",&ch);
+   switch(ch){
    	case 1 :head = insertatbegin(head);
            print(head);
             break;
@@ -133,13 +149,16 @@ int main(){
     case 4 :  head =  deleatbegin(head);
                 print(head);
 				break;
-	  case 5 :   head = deleatEND(head);
+	case 5 :   head = deleatEND(head);
                print(head);
                  break;
-    case 6 :  head = deletatanywhere(head);
+     case 6 :  head = deletatanywhere(head);
                  print(head);
                  break;
-    default: printf("select valid choice");
+ case 7 :   head = reverse(head);
+             print(head);
+             break;
+                 default: printf("select valid choice");
 				 exit(0);
    }
 		  }while(1);
