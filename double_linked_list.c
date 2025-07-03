@@ -17,7 +17,6 @@ void deleteAtBegin();
 void deleteAtEnd();
 void deleteAtAnywhere();
 void traverse();
-void reverse(NODE*);
 int size=0;
 NODE *create()
 {
@@ -159,18 +158,6 @@ void deleteAtAnywhere()
 		}
 	}
 }
-void reverse(NODE *temp)
-{
-	if(temp==NULL)
-	printf("List is Empty!!!\n");
-	else if(temp==NULL)
-	return ;
-	else
-	{
-		reverse(temp->next);
-		printf("-->%d",temp->data);
-	}
-}
 void traverse()
 {
 	NODE *t;
@@ -200,7 +187,6 @@ int main()
 		printf("5.Deletion at ending.\n");
 		printf("6.Deletion At Anywhere.\n");
 		printf("7.Traverse.\n");
-		printf("8.Reverse.\n");
 		printf("9.Count.\n");
 		printf("Enter your choice:");
 		scanf("%d",&ch);
@@ -221,10 +207,8 @@ int main()
 				   break;
 			case 7:traverse();
 				   break;
-			case 8:reverse(head);
-				   printf("\n");
-				   break;
-			case 9:printf("Number of elements are %d\n",size);
+			
+			case 8:printf("Number of elements are %d\n",size);
 				   break;
 			default:exit(0);
 		}
